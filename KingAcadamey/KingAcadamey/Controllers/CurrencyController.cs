@@ -1,4 +1,5 @@
-﻿using KingAcadamey.Services;
+﻿using KingAcadamey.Models;
+using KingAcadamey.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -16,7 +17,7 @@ namespace KingAcadamey.Controllers
         }
 
         [HttpGet]
-        public IActionResult GetCurrencies([FromQuery] string fromDate, [FromQuery] string toDate)
+        public ActionResult<ViewResultModel> GetCurrencies([FromQuery] string fromDate, [FromQuery] string toDate)
         {
             var list = _hnbService.GetHnbValues(fromDate, toDate);
             return Ok(list);
