@@ -1,4 +1,5 @@
 ﻿using KingAcadamey.Configuration;
+using KingAcadamey.Exceptions;
 using KingAcadamey.Models;
 using Microsoft.Extensions.Options;
 using System.Text.Json;
@@ -16,7 +17,7 @@ namespace KingAcadamey.Services
             _arithemticMeanService = arithemticMeanService;
         }
 
-        public async Task<ViewResultModel> GetHnbValues(string dateFrom, string dateTo)
+        public async Task<List<ViewResultModel>> GetHnbValues(string dateFrom, string dateTo)
         {
             string url = _connectionApi.Value.ConnectionString;
 
@@ -24,7 +25,7 @@ namespace KingAcadamey.Services
             url = url.Replace("dateTo", dateTo);
 
             var client = new HttpClient();
-            var request = new ViewResultModel();
+            var request = new List<ViewResultModel>();
             try
             {
                 var response = await client.GetAsync(url);
@@ -63,30 +64,29 @@ namespace KingAcadamey.Services
                                 var prosjekProdajniTecaj = _arithemticMeanService.CalculateArithmeticMean(TecajProdajni);
                                 var TecajSrednji = currencies.Select(x => x.SrednjiTecaj).ToList();
                                 var prosjekSrednjiTecaj = _arithemticMeanService.CalculateArithmeticMean(TecajSrednji);
-                                request.CurrencyModel = new CurrencyModel
-                                {
-                                    ProsjekKupovniTecaj = prosjekKupovniTecaj,
-                                    ProsjekProdajniTecaj = prosjekProdajniTecaj,
-                                    ProsjekSrednjiTecaj = prosjekSrednjiTecaj
-                                };
+                                var model = new ViewResultModel();
+                                model.ProsjekKupovniTecaj = prosjekKupovniTecaj;
+                                model.ProsjekSrednjiTecaj = prosjekSrednjiTecaj;
+                                model.ProsjekProdajniTecaj = prosjekProdajniTecaj;
+                                request.Add(model);
                             }
                         }
                         else
                         {
-                            request.Message = "No results to match this parameters";
+                            throw new ErrorMessage("No results to match this parameters");
                         }
                    
                     }
                     else
                     {
-                        request.Message = "No response!";
+                        throw new ErrorMessage("No response!");
                     }
 
                 }
             }
             catch(Exception ex)
             {
-                request.Message = $"An error occurred: {ex.Message}";
+                throw new ErrorMessage($"An error occurred: {ex.Message}");
             }
 
             return request;
