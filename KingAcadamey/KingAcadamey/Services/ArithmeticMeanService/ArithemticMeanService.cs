@@ -2,17 +2,11 @@
 {
     public class ArithemticMeanService : IArithemticMeanService
     {
-        public decimal CalculateArithmeticMean(List<decimal> values)
+        public double CalculateArithmeticMean(List<double> values)
         {
-            if (values == null || values.Count == 0) return 0;
+            double mean = values.Average();
 
-            decimal sum = 0;
-            foreach (var value in values)
-            {
-                sum += value;
-            }
-
-            return sum / values.Count;
+            return mean;
         }
     }
 }
