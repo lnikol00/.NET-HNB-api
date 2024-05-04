@@ -1,6 +1,6 @@
-﻿using KingAcadamey.Models;
+﻿using KingAcadamey.Services.HnbService.Model;
 
-namespace KingAcadamey.Services
+namespace KingAcadamey.Services.HnbService
 {
     public interface IHnbService
     {

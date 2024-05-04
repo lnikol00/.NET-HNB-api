@@ -1,5 +1,5 @@
-﻿using KingAcadamey.Models;
-using KingAcadamey.Services;
+﻿using KingAcadamey.Services.HnbService;
+using KingAcadamey.Services.HnbService.Model;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 

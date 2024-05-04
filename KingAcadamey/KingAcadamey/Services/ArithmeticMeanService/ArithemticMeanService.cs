@@ -1,4 +1,4 @@
-﻿namespace KingAcadamey.Services
+﻿namespace KingAcadamey.Services.ArithmeticMeanService
 {
     public class ArithemticMeanService : IArithemticMeanService
     {
