@@ -1,6 +1,6 @@
-
-using KingAcadamey.Configuration;
-using KingAcadamey.Services;
+using KingAcadamey.Models;
+using KingAcadamey.Services.ArithmeticMeanService;
+using KingAcadamey.Services.HnbService;
 
 namespace KingAcadamey
 {

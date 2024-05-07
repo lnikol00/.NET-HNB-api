@@ -1,4 +1,4 @@
-﻿namespace KingAcadamey.Models
+﻿namespace KingAcadamey.Services.HnbService.Model
 {
     public class HnbCurrency
     {
@@ -10,6 +10,6 @@
         public decimal ProdajniTecaj { get; set; }
         public string SifraValute { get; set; }
         public decimal SrednjiTecaj { get; set; }
-        public string valuta { get; set; }
+        public string Valuta { get; set; }
     }
 }

@@ -1,4 +1,4 @@
-﻿namespace KingAcadamey.Models
+﻿namespace KingAcadamey.Services.HnbService.Model
 {
     public class SearchResultModel
     {

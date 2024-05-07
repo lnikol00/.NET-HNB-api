@@ -1,10 +1,11 @@
-﻿using KingAcadamey.Configuration;
-using KingAcadamey.Exceptions;
+﻿using KingAcadamey.Exceptions;
 using KingAcadamey.Models;
+using KingAcadamey.Services.ArithmeticMeanService;
+using KingAcadamey.Services.HnbService.Model;
 using Microsoft.Extensions.Options;
 using System.Text.Json;
 
-namespace KingAcadamey.Services
+namespace KingAcadamey.Services.HnbService
 {
     public class HnbService : IHnbService
     {
@@ -40,42 +41,46 @@ namespace KingAcadamey.Services
 
                         results = JsonSerializer.Deserialize<List<SearchResultModel>>(reposnseContext);
 
-                        if(results != null)
+                        if (results != null)
                         {
-                            var currencies = results.Select(x=> new HnbCurrency 
-                            { 
+                            var currencies = results.Select(x => new HnbCurrency
+                            {
                                 BrojTecajnice = x.broj_tecajnice,
                                 DatumPrimjene = DateTime.Parse(x.datum_primjene),
                                 Drzava = x.drzava,
                                 DrzavaIso = x.drzava_iso,
-                                KupovniTecaj = Decimal.Parse(x.kupovni_tecaj),
-                                ProdajniTecaj = Decimal.Parse(x.prodajni_tecaj),
+                                KupovniTecaj = decimal.Parse(x.kupovni_tecaj),
+                                ProdajniTecaj = decimal.Parse(x.prodajni_tecaj),
                                 SifraValute = x.sifra_valute,
-                                SrednjiTecaj = Decimal.Parse(x.srednji_tecaj),
-                                valuta = x.valuta
-                            
-                            }).ToList();   
+                                SrednjiTecaj = decimal.Parse(x.srednji_tecaj),
+                                Valuta = x.valuta
 
-                            if(currencies != null)
+                            }).ToList();
+
+                            if (currencies != null)
                             {
-                                var TecajKupovni = currencies.Select(x => x.KupovniTecaj).ToList();
-                                var prosjekKupovniTecaj = _arithemticMeanService.CalculateArithmeticMean(TecajKupovni);
-                                var TecajProdajni = currencies.Select(x=> x.ProdajniTecaj).ToList();
-                                var prosjekProdajniTecaj = _arithemticMeanService.CalculateArithmeticMean(TecajProdajni);
-                                var TecajSrednji = currencies.Select(x => x.SrednjiTecaj).ToList();
-                                var prosjekSrednjiTecaj = _arithemticMeanService.CalculateArithmeticMean(TecajSrednji);
-                                var model = new ViewResultModel();
-                                model.ProsjekKupovniTecaj = prosjekKupovniTecaj;
-                                model.ProsjekSrednjiTecaj = prosjekSrednjiTecaj;
-                                model.ProsjekProdajniTecaj = prosjekProdajniTecaj;
-                                request.Add(model);
+                                foreach (var currency in currencies.Select(x => x.Valuta))
+                                {
+                                    var TecajKupovni = currencies.Select(x => (double)x.KupovniTecaj).ToList();
+                                    var prosjekKupovniTecaj = _arithemticMeanService.CalculateArithmeticMean(TecajKupovni);
+                                    var TecajProdajni = currencies.Select(x => (double)x.ProdajniTecaj).ToList();
+                                    var prosjekProdajniTecaj = _arithemticMeanService.CalculateArithmeticMean(TecajProdajni);
+                                    var TecajSrednji = currencies.Select(x => (double)x.SrednjiTecaj).ToList();
+                                    var prosjekSrednjiTecaj = _arithemticMeanService.CalculateArithmeticMean(TecajSrednji);
+                                    var model = new ViewResultModel();
+                                    model.CurrencyCode = currency.ToString();
+                                    model.ProsjekKupovniTecaj = (decimal)prosjekKupovniTecaj;
+                                    model.ProsjekSrednjiTecaj = (decimal)prosjekSrednjiTecaj;
+                                    model.ProsjekProdajniTecaj = (decimal)prosjekProdajniTecaj;
+                                    request.Add(model);
+                                }
                             }
                         }
                         else
                         {
                             throw new ErrorMessage("No results to match this parameters");
                         }
-                   
+
                     }
                     else
                     {
@@ -84,7 +89,7 @@ namespace KingAcadamey.Services
 
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 throw new ErrorMessage($"An error occurred: {ex.Message}");
             }
