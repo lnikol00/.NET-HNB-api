@@ -2,9 +2,9 @@
 {
     public class ArithemticMeanService : IArithemticMeanService
     {
-        public double CalculateArithmeticMean(List<double> values)
+        public decimal CalculateArithmeticMean(List<decimal> values)
         {
-            double mean = values.Average();
+            decimal mean = values.Average();
 
             return mean;
         }
