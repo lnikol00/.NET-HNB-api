@@ -25,6 +25,7 @@ namespace KingAcadamey.Services.HnbService
             url = url.Replace("dateFrom", dateFrom);
             url = url.Replace("dateTo", dateTo);
 
+
             var client = new HttpClient();
             var request = new List<ViewResultModel>();
             try
@@ -41,7 +42,7 @@ namespace KingAcadamey.Services.HnbService
 
                         results = JsonSerializer.Deserialize<List<SearchResultModel>>(reposnseContext);
 
-                        if (results != null)
+                        if (results != null && results.Count != 0)
                         {
                             var currencies = results.Select(x => new HnbCurrency
                             {
@@ -61,17 +62,19 @@ namespace KingAcadamey.Services.HnbService
                             {
                                 foreach (var currency in currencies.Select(x => x.Valuta))
                                 {
-                                    var TecajKupovni = currencies.Select(x => (double)x.KupovniTecaj).ToList();
+                                    var TecajKupovni = currencies.Where(x => x.Valuta == currency).Select(x => x.KupovniTecaj).ToList();
                                     var prosjekKupovniTecaj = _arithemticMeanService.CalculateArithmeticMean(TecajKupovni);
-                                    var TecajProdajni = currencies.Select(x => (double)x.ProdajniTecaj).ToList();
+                                    var TecajProdajni = currencies.Where(x => x.Valuta == currency).Select(x => x.ProdajniTecaj).ToList();
                                     var prosjekProdajniTecaj = _arithemticMeanService.CalculateArithmeticMean(TecajProdajni);
-                                    var TecajSrednji = currencies.Select(x => (double)x.SrednjiTecaj).ToList();
+                                    var TecajSrednji = currencies.Where(x => x.Valuta == currency).Select(x => x.SrednjiTecaj).ToList();
                                     var prosjekSrednjiTecaj = _arithemticMeanService.CalculateArithmeticMean(TecajSrednji);
-                                    var model = new ViewResultModel();
-                                    model.CurrencyCode = currency.ToString();
-                                    model.ProsjekKupovniTecaj = (decimal)prosjekKupovniTecaj;
-                                    model.ProsjekSrednjiTecaj = (decimal)prosjekSrednjiTecaj;
-                                    model.ProsjekProdajniTecaj = (decimal)prosjekProdajniTecaj;
+                                    var model = new ViewResultModel
+                                    {
+                                        CurrencyCode = currency.ToString(),
+                                        ProsjekKupovniTecaj = prosjekKupovniTecaj,
+                                        ProsjekSrednjiTecaj = prosjekSrednjiTecaj,
+                                        ProsjekProdajniTecaj = prosjekProdajniTecaj
+                                    };
                                     request.Add(model);
                                 }
                             }
@@ -84,9 +87,13 @@ namespace KingAcadamey.Services.HnbService
                     }
                     else
                     {
-                        throw new ErrorMessage("No response!");
+                        throw new ErrorMessage("Invalid response context!");
                     }
 
+                }
+                else
+                {
+                    throw new ErrorMessage("No response!");
                 }
             }
             catch (Exception ex)
