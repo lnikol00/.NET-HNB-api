@@ -1,6 +1,5 @@
 ﻿using KingAcadamey.Services.HnbService;
 using KingAcadamey.Services.HnbService.Model;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace KingAcadamey.Controllers
@@ -17,9 +16,9 @@ namespace KingAcadamey.Controllers
         }
 
         [HttpGet]
-        public ActionResult<ViewResultModel> GetCurrencies([FromQuery] string fromDate, [FromQuery] string toDate)
+        public async Task<ActionResult<ViewResultModel>> GetCurrencies([FromQuery] string fromDate, [FromQuery] string toDate)
         {
-            var list = _hnbService.GetHnbValues(fromDate, toDate);
+            var list = await _hnbService.GetHnbValues(fromDate, toDate);
             return Ok(list);
         }
     }
