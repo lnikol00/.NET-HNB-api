@@ -1,4 +1,5 @@
-﻿using KingAcadamey.Exceptions;
+﻿using KingAcadamey.Controllers.DTO;
+using KingAcadamey.Exceptions;
 using KingAcadamey.Models;
 using KingAcadamey.Services.ArithmeticMeanService;
 using KingAcadamey.Services.HnbService.Model;
@@ -18,12 +19,12 @@ namespace KingAcadamey.Services.HnbService
             _arithemticMeanService = arithemticMeanService;
         }
 
-        public async Task<List<ViewResultModel>> GetHnbValues(string dateFrom, string dateTo)
+        public async Task<List<ViewResultModel>> GetHnbValues(SearchRequestDTO date)
         {
             string url = _connectionApi.Value.ConnectionString;
 
-            url = url.Replace("dateFrom", dateFrom);
-            url = url.Replace("dateTo", dateTo);
+            url = url.Replace("dateFrom", date.fromDate);
+            url = url.Replace("dateTo", date.toDate);
 
 
             var client = new HttpClient();

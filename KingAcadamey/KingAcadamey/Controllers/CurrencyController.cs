@@ -1,4 +1,5 @@
-﻿using KingAcadamey.Services.HnbService;
+﻿using KingAcadamey.Controllers.DTO;
+using KingAcadamey.Services.HnbService;
 using KingAcadamey.Services.HnbService.Model;
 using Microsoft.AspNetCore.Mvc;
 
@@ -16,9 +17,9 @@ namespace KingAcadamey.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<ViewResultModel>> GetCurrencies([FromQuery] string fromDate, [FromQuery] string toDate)
+        public async Task<ActionResult<ViewResultModel>> GetCurrencies([FromQuery] SearchRequestDTO date)
         {
-            var list = await _hnbService.GetHnbValues(fromDate, toDate);
+            var list = await _hnbService.GetHnbValues(date);
             return Ok(list);
         }
     }
