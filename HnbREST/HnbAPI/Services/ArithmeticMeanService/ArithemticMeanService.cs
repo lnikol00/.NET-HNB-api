@@ -1,4 +1,4 @@
-﻿namespace KingAcadamey.Services.ArithmeticMeanService
+﻿namespace HnbAPI.Services.ArithmeticMeanService
 {
     public class ArithemticMeanService : IArithemticMeanService
     {

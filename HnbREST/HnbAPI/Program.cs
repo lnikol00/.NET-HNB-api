@@ -1,8 +1,8 @@
-using KingAcadamey.Models;
-using KingAcadamey.Services.ArithmeticMeanService;
-using KingAcadamey.Services.HnbService;
+using HnbAPI.Models;
+using HnbAPI.Services.ArithmeticMeanService;
+using HnbAPI.Services.HnbService;
 
-namespace KingAcadamey
+namespace HnbAPI
 {
     public class Program
     {

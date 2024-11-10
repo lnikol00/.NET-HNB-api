@@ -1,12 +1,12 @@
-﻿using KingAcadamey.Controllers.DTO;
-using KingAcadamey.Exceptions;
-using KingAcadamey.Models;
-using KingAcadamey.Services.ArithmeticMeanService;
-using KingAcadamey.Services.HnbService.Model;
+﻿using HnbAPI.Controllers.DTO;
+using HnbAPI.Exceptions;
+using HnbAPI.Models;
+using HnbAPI.Services.ArithmeticMeanService;
+using HnbAPI.Services.HnbService.Model;
 using Microsoft.Extensions.Options;
 using System.Text.Json;
 
-namespace KingAcadamey.Services.HnbService
+namespace HnbAPI.Services.HnbService
 {
     public class HnbService : IHnbService
     {

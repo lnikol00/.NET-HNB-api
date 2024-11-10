@@ -1,9 +1,9 @@
-﻿using KingAcadamey.Controllers.DTO;
-using KingAcadamey.Services.HnbService;
-using KingAcadamey.Services.HnbService.Model;
+﻿using HnbAPI.Controllers.DTO;
+using HnbAPI.Services.HnbService;
+using HnbAPI.Services.HnbService.Model;
 using Microsoft.AspNetCore.Mvc;
 
-namespace KingAcadamey.Controllers
+namespace HnbAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]

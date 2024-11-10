@@ -1,4 +1,4 @@
-﻿namespace KingAcadamey.Controllers.DTO
+﻿namespace HnbAPI.Controllers.DTO
 {
     public class SearchRequestDTO
     {

@@ -1,4 +1,4 @@
-﻿namespace KingAcadamey.Exceptions
+﻿namespace HnbAPI.Exceptions
 {
     public class ErrorMessage : Exception
     {

@@ -1,4 +1,4 @@
-﻿namespace KingAcadamey.Models
+﻿namespace HnbAPI.Models
 {
     public class ConnectionApi
     {

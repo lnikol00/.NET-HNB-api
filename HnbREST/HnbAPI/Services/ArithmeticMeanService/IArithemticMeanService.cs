@@ -1,5 +1,5 @@
 ﻿
-namespace KingAcadamey.Services.ArithmeticMeanService
+namespace HnbAPI.Services.ArithmeticMeanService
 {
     public interface IArithemticMeanService
     {
