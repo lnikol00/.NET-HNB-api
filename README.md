@@ -41,7 +41,7 @@ HTTP status kodovi: RESTful servisi koriste standardne HTTP status kodove za ozn
 U tvom slučaju, koristi se ASP.NET Core Web API kao backend za aplikaciju. ASP.NET Core Web API je okvir dizajniran za izgradnju RESTful servisa koji mogu komunicirati s različitim klijentima poput web preglednika, desktop aplikacija i mobilnih aplikacija.
 
 * Rute (Routing): Web API definira rute koje mapiraju na specifične resurse. Ove rute obično slijede RESTful konvencije, npr.:
-  *  ```http
+  *  ```
         GET /api/currency
       ```
    
