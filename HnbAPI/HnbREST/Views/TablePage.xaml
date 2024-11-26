@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="HnbREST.Views.TablePage"
+             Shell.BackgroundColor="{StaticResource Primary}"
+             >
+    <Shell.TitleView>
+        <HorizontalStackLayout VerticalOptions="Fill">
+            <Label
+                 Text="HNB TEČAJNA LISTA"
+                 TextColor="White"
+                 VerticalTextAlignment="Center"
+                 VerticalOptions="Center"
+                 HeightRequest="50"
+                 FontSize="20" />
+        </HorizontalStackLayout>
+    </Shell.TitleView>
+    <ScrollView>
+        <VerticalStackLayout>
+            <CollectionView x:Name="collectionView" ItemsSource="{Binding Results}" SelectionMode="Single">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Frame Padding="0" Margin="30,30,30,0" CornerRadius="30">
+                            <StackLayout BackgroundColor="{StaticResource Primary}">
+                                <Grid Padding="20" >
+
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                    </Grid.RowDefinitions>
+
+                                    <Label Grid.Row="0" Text="{Binding Country}" TextColor="{StaticResource White}" FontSize="20" HorizontalOptions="Center"/>
+                                    <Label Grid.Row="1" Text="{Binding CurrencyCode}" TextColor="{StaticResource White}" FontSize="20" HorizontalOptions="Center"/>
+
+                                    <BoxView Grid.Row="2" 
+                                             HeightRequest="1"
+                                             Color="{StaticResource White}"
+                                             Margin="0,10,0,10"/>
+
+                                    <Label Grid.Row="3"  Text="{Binding ProsjekSrednjiTecaj, StringFormat='Prosjek Srednji Tečaj: {0}'}" TextColor="{StaticResource White}" FontSize="16"/>
+
+                                    <Label Grid.Row="4" Text="{Binding ProsjekProdajniTecaj,  StringFormat='Prosjek Prodajni Tečaj: {0}'}"  TextColor="{StaticResource White}" FontSize="16"/>
+
+                                    <Label Grid.Row="5"  Text="{Binding ProsjekKupovniTecaj,  StringFormat='Prosjek Kupovni Tečaj: {0}'}"  TextColor="{StaticResource White}" FontSize="16"/>
+
+                                </Grid>
+                            </StackLayout>
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>
