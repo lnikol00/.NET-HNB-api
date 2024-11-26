@@ -18,48 +18,49 @@
         </HorizontalStackLayout>
     </Shell.TitleView>
 
+    <ScrollView>
+        <VerticalStackLayout>
 
-    <VerticalStackLayout>
+            <StackLayout Padding="15" Spacing="20">
 
-        <StackLayout Padding="15" Spacing="20">
-
-            <Label x:Name="ErrorLabel" FontSize="16"
+                <Label x:Name="ErrorLabel" FontSize="16"
                    HorizontalOptions="FillAndExpand" VerticalOptions="Center" 
                    BackgroundColor="{StaticResource ErrorBackground}" TextColor="{StaticResource ErrorText}" 
                    Padding="20" HorizontalTextAlignment="Center"/>
 
-            <Label x:Name="LoadingLabel" FontSize="16" 
+                <Label x:Name="LoadingLabel" FontSize="16" 
                    HorizontalOptions="FillAndExpand" VerticalOptions="Center"
                    BackgroundColor="{StaticResource LoadingBackground}" TextColor="{StaticResource LoadingText}"
                    Padding="20" HorizontalTextAlignment="Center"/>
 
-            <FlexLayout Direction="Column" AlignItems="Center" JustifyContent="Center">
-                <Frame Padding="0" Margin="0,10,0,10" CornerRadius="15">
-                    <picker:SfDatePicker x:Name="DateFrom" HeightRequest="280" MinimumDate="2022/01/01" MaximumDate="2026-01-01" Format="yyyy_MM_dd">
-                        <picker:SfDatePicker.HeaderView>
-                            <picker:PickerHeaderView Background="{StaticResource Primary}" Text="Datum Od" Height="40">
-                                <picker:PickerHeaderView.TextStyle >
-                                    <picker:PickerTextStyle FontSize="16" TextColor="{StaticResource White}" />
-                                </picker:PickerHeaderView.TextStyle>
-                            </picker:PickerHeaderView>
-                        </picker:SfDatePicker.HeaderView>
-                    </picker:SfDatePicker>
-                </Frame>
-                <Frame Padding="0" Margin="0,10,0,10" CornerRadius="15">
-                    <picker:SfDatePicker x:Name="DateTo" HeightRequest="280" MinimumDate="2022/01/02" MaximumDate="2026-01-02" Format="yyyy_MM_dd">
-                        <picker:SfDatePicker.HeaderView>
-                            <picker:PickerHeaderView Background="{StaticResource Primary}" Text="Datum Do" Height="40">
-                                <picker:PickerHeaderView.TextStyle >
-                                    <picker:PickerTextStyle FontSize="16" TextColor="{StaticResource White}" />
-                                </picker:PickerHeaderView.TextStyle>
-                            </picker:PickerHeaderView>
-                        </picker:SfDatePicker.HeaderView>
-                    </picker:SfDatePicker>
-                </Frame>
-            </FlexLayout>
-        </StackLayout>
+                <FlexLayout Direction="Column" AlignItems="Center" JustifyContent="Center">
+                    <Frame Padding="0" Margin="0,10,0,10" CornerRadius="15">
+                        <picker:SfDatePicker x:Name="DateFrom" HeightRequest="280" MinimumDate="2022/01/01" MaximumDate="2026-01-01" Format="yyyy_MM_dd">
+                            <picker:SfDatePicker.HeaderView>
+                                <picker:PickerHeaderView Background="{StaticResource Primary}" Text="Datum Od" Height="40">
+                                    <picker:PickerHeaderView.TextStyle >
+                                        <picker:PickerTextStyle FontSize="16" TextColor="{StaticResource White}" />
+                                    </picker:PickerHeaderView.TextStyle>
+                                </picker:PickerHeaderView>
+                            </picker:SfDatePicker.HeaderView>
+                        </picker:SfDatePicker>
+                    </Frame>
+                    <Frame Padding="0" Margin="0,10,0,10" CornerRadius="15">
+                        <picker:SfDatePicker x:Name="DateTo" HeightRequest="280" MinimumDate="2022/01/02" MaximumDate="2026-01-02" Format="yyyy_MM_dd">
+                            <picker:SfDatePicker.HeaderView>
+                                <picker:PickerHeaderView Background="{StaticResource Primary}" Text="Datum Do" Height="40">
+                                    <picker:PickerHeaderView.TextStyle >
+                                        <picker:PickerTextStyle FontSize="16" TextColor="{StaticResource White}" />
+                                    </picker:PickerHeaderView.TextStyle>
+                                </picker:PickerHeaderView>
+                            </picker:SfDatePicker.HeaderView>
+                        </picker:SfDatePicker>
+                    </Frame>
+                </FlexLayout>
+            </StackLayout>
 
-        <Button FontSize="18" Text="Submit" HorizontalOptions="FillAndExpand" VerticalOptions="EndAndExpand" Margin="10,0,10,0" CornerRadius="30" Clicked="OnSubmitClicked"/>
+            <Button FontSize="18" Text="Submit" HorizontalOptions="FillAndExpand" VerticalOptions="EndAndExpand" Margin="10,0,10,0" CornerRadius="30" Clicked="OnSubmitClicked"/>
 
-    </VerticalStackLayout>
+        </VerticalStackLayout>
+    </ScrollView>
 </ContentPage>
